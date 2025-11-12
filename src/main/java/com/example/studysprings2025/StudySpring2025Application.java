@@ -8,5 +8,13 @@ public class StudySpring2025Application {
     public static void main(String[] args) {
         SpringApplication.run(StudySpring2025Application.class, args);
     }
+
+    /* agenda
+    Serialize/deserialize
+    Exception handling
+    Component-Service-Repository
+    Autowiring
+
+     */
 }
 
