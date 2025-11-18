@@ -10,10 +10,8 @@ public class StudySpring2025Application {
     }
 
     /* agenda
-    Serialize/deserialize
-    Exception handling
-    Component-Service-Repository
-    Autowiring
+
+
 
      */
 }

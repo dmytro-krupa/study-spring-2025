@@ -2,10 +2,13 @@ package com.example.studysprings2025.repository;
 
 import com.example.studysprings2025.entity.Car;
 import com.example.studysprings2025.exception.ResourceNotFoundException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Repository
 public class CarRepository {
     private long carCounter = 0;
     private List<Car> cars = new LinkedList<>();
@@ -21,7 +24,7 @@ public class CarRepository {
         Car savedCar = cars.stream()
                 .filter(e -> e.getId().equals(car.getId()))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         savedCar.setModel(car.getModel());
         savedCar.setBrand(car.getBrand());

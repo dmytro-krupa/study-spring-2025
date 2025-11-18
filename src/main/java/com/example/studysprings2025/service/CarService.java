@@ -1,19 +1,25 @@
 package com.example.studysprings2025.service;
 
+import com.example.studysprings2025.dto.CarDTO;
+import com.example.studysprings2025.dto.FullPriceCarDTO;
 import com.example.studysprings2025.entity.Car;
 
 import java.util.List;
 
 public interface CarService {
-    Car saveCar(Car car);
+    CarDTO saveCar(CarDTO car);
 
-    Car updateCar(Car car);
+    CarDTO updateCar(CarDTO car);
 
-    Car patchUpdateCar(Long id, Car car);
+    CarDTO patchUpdateCar(Long id, CarDTO car);
 
-    Car get(Long id);
+    CarDTO get(Long id);
 
-    List<Car> getAllCars();
+    List<CarDTO> getAllCars();
 
     void deleteCar(Long id);
+
+    void addDetailToCar(Long carId, Long detailId);
+
+    FullPriceCarDTO getFullFixingPrice(Long carId);
 }

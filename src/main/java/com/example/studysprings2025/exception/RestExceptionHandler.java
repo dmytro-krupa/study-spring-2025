@@ -14,18 +14,25 @@ import java.util.Map;
 public class RestExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Object> handleResourceNotFound(ResourceNotFoundException ex, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("error", "Not Found");
-        body.put("message", ex.getMessage());
-        String path = request.getDescription(false);
-        if (path != null && path.startsWith("uri=")) {
-            path = path.substring(4);
-        }
-        body.put("path", path);
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    public ResponseEntity<ExceptionResponse> handleResourceNotFound(ResourceNotFoundException ex, WebRequest request) {
+        var exceptionResponse = new ExceptionResponse();
+
+        exceptionResponse.setTimestamp(LocalDateTime.now());
+        exceptionResponse.setDetails(ex.getMessage());
+        exceptionResponse.setInternalCode("A30");
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Object> handleValidationException(ValidationException ex, WebRequest request) {
+        var exceptionResponse = new ExceptionResponse();
+
+        exceptionResponse.setTimestamp(LocalDateTime.now());
+        exceptionResponse.setDetails(ex.getMessage());
+        exceptionResponse.setInternalCode("B70");
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
 
